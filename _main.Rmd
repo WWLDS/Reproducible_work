@@ -21,6 +21,8 @@ Definitions of key terminology in this space is a real minefield, not least beca
 
 [Hans Plesser (2018)]: https://www.frontiersin.org/articles/10.3389/fninf.2017.00076/full
 
+_images/repro_replic_image.png
+
 
 
 Talk about catch up of pedagogy and teaching reproducible working
@@ -31,19 +33,3 @@ Talk about DAA and its 3 year plan - DS part in particular - say that in order t
 
 Talk about ways we can work in a reproducible way as a team
 Use stuff on my website to help with this
-
-
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
