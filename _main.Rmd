@@ -1,6 +1,6 @@
 ---
 title: "Producing reproducible code: A DAA DS framework"
-output: github_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -9,13 +9,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-Data science is a burgeoning and yet still nascent field. Its popularity has created an influx of DS' from an incredible array of disparate backgrounds; economics to biochemistry, and all fields in between! In fact, its quite likely that DS as a profession contains more generalist skilled individuals than any other scientific career, not least because of the variety of skills required to be proficient, but also due to the fields novelty - I think it reasonable to posit that most, current, established DS were either joining from a second career and/or received no formal pedagogy/taught themselves autodidacticly. 
+Data science is a burgeoning and yet still nascent field. Its popularity has created an influx of DS' from an incredible array of disparate backgrounds; economics to biochemistry, and all fields in between! In fact, it's quite likely that DS as a profession contains more generalist skilled individuals than any other scientific career, not least because of the variety of skills required to be proficient, but also due to the fields novelty - I think it reasonable to posit that most, current, established DS were either joining from a second career and/or received no formal pedagogy/taught themselves autodidacticly. 
 
-A generalist background clearly has merits, especially in the arena of data scientific work where a wide ranging skillset is absolutely necessary. However, the lack of pedagogical standardisation has caused problems with readability, reproducibility, and replicability. Interestingly, lacking pedagogical standardisation has not obviously inhibited the "output" of DS work from improving. Indeed, the widely recognised tools of data scientists (statistics, AI, coding, problem solving) have enjoyed rising competency and improvements, likely through a convergence in the lessons taught by both online and degree courses, and replicating pedagogy related to these skills from other disciplines. 
+A generalist background clearly has merits, especially in the arena of data scientific work where a wide ranging skill set is absolutely necessary. However, the lack of pedagogical standardisation has caused problems with readability, reproducibility, and replicability. Interestingly, lacking pedagogical standardisation has not obviously inhibited the "output" of DS work from improving. Indeed, the widely recognised tools of Data Scientists' (statistics, AI, coding, problem solving) have enjoyed rising competency and improvements, likely through a convergence in the lessons taught by both online and degree courses, and replicating pedagogy related to these skills from other disciplines. 
 
-However, how can we actually know that improvements in Data Scientists' output have been accrued? A definition of improvements would be required, and is beyond this the scope of this brief piece, but I think it's safe to assume that most definitions would include one or more of the following: more output (perhaps in a shorter timeframe), better performing models, more appropriate figures and statistical analyses. But none of these determine whether the work that went into producing the output (data collection, datasets, the code), were appropriate for the question posed. This is the crux of the matter: the "correctness" of the output cannot be objectively assessed without transparency of the code.
+However, how can we actually know that improvements in Data Scientists' output have been accrued? A definition of improvements would be required, and is beyond this the scope of this brief piece, but I think it's safe to assume that most definitions would include one or more of the following: 
 
+- more output (perhaps in a shorter timeframe), 
+- better performing models, 
+- more appropriate figures and statistical analyses. 
 
+But none of these determine whether the work that went into producing the output (data collection, datasets, the code), were appropriate for the question posed. 
+
+This is the crux of the matter: **the "correctness" of the output cannot be objectively assessed without transparency of the code.**
+
+Formal courses on data science touch on reproducibility, however serious highlighting of the importance to practical Data Science appears to have been left to the individual to self-teach, or that they learn on-the-job. Here, we argue for reproducibility and describe a framework toward producing robust, reliable and reproducible work in the DAA Data Science team.
+
+<br>
+
+---
 
 # Definitions: Reproducible and Replicable
 
@@ -24,27 +36,35 @@ Definitions of key terminology in this space is a real minefield, not least beca
 
 The definitions I will be using are taken from the [Turing Way]:
 
-- Reproducible: A result is reproducible when the same analysis steps performed on the same dataset consistently produces the same answer.
+- *Reproducible*: A result is reproducible when the same analysis steps performed on the same dataset consistently produces the same answer.
 
-- Replicable: A result is replicable when the same analysis performed on different datasets produces qualitatively similar answers.
+- *Replicable*: A result is replicable when the same analysis performed on different datasets produces qualitatively similar answers.
 
-- Robust: A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar or identical answer is produced. Robust results show that the work is not dependent on the specificities of the programming language chosen to perform the analysis.
+- *Robust*: A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar or identical answer is produced. Robust results show that the work is not dependent on the specificities of the programming language chosen to perform the analysis.
 
-- Generalisable: Combining replicable and robust findings allow us to form generalisable results. Note that running an analysis on a different software implementation and with a different dataset does not provide generalised results. There will be many more steps to know how well the work applies to all the different aspects of the research question. Generalisation is an important step towards understanding that the result is not dependent on a particular dataset nor a particular version of the analysis pipeline.
+- *Generalisable*: Combining replicable and robust findings allow us to form generalisable results. Note that running an analysis on a different software implementation and with a different dataset does not provide generalised results. There will be many more steps to know how well the work applies to all the different aspects of the research question. Generalisation is an important step towards understanding that the result is not dependent on a particular dataset nor a particular version of the analysis pipeline.
 
+<br>
 
-![How the Turing Way defines reproducible research](_images/repro_replic_image.png)
+<center>
+
+![*How the Turing Way defines reproducible research*](_main_images/repro_replic_image.png)
+
+</center>
+
 
 [Hans Plesser (2018)]: https://www.frontiersin.org/articles/10.3389/fninf.2017.00076/full
 [Turing Way]: https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html
 
+<br>
 
+---
 
-# Reproducible code in NHS data policy
+# NHS data policy: highlighting reproducibility
 
-Formal courses on data science touch on reproducibility, however serious highlighting of the importance to practical Data Science appears to have been left to the individual to self-teach, or that they learn on-the-job. 
+Within the NHS, having dedicated Data Scientists' (or even data literate Data Teams') is a relatively nascent phenomenon. There is a tremendous amount of work to be done to bring NHS data standards up to that of private organisations. Encouragingly though, there's definitely evidence that those with influence in the UK are advocating for the potential that Data Teams' across the NHS can unlock.
 
-The UK government has recently published documents describing the importance of data best practices, and promoting reproducible analytic work, within the NHS. Below are links pointing to these documents, which I'll be keeping updated when new ones become available. It's definitely worth reading these documents, they're relevant to the work you do, but more importantly they will align you with current best practices. I also learned a ton from them!
+The UK government has recently published NHS-centred documents that emphasise the importance, and give detailed guidance, on data best practices. Below are links pointing to these documents, which I'll be keeping up-to-date when other relevant documents become available. It's definitely worth reading these; they're relevant to the work you do, but more importantly they will align you with the wider NHS data community.
 
 - [Better, broader, safer: using health data for research and analysis - GOV.UK, April 2022]
 
@@ -53,18 +73,73 @@ The UK government has recently published documents describing the importance of 
 [Better, broader, safer: using health data for research and analysis - GOV.UK, April 2022]: https://www.gov.uk/government/publications/better-broader-safer-using-health-data-for-research-and-analysis/better-broader-safer-using-health-data-for-research-and-analysis
 [Data saves lives: reshaping health and social care with data - GOV.UK, June 2022]: https://www.gov.uk/government/publications/data-saves-lives-reshaping-health-and-social-care-with-data/data-saves-lives-reshaping-health-and-social-care-with-data#how-you-can-get-involve
 
+<br>
 
+---
 
 # The DAA
 
-Our department have published their three year plan (2022 - 2025), which includes a section on Data Science. A revision of this document would include greater emphasis on reproducible code production, however there is a nice example of how reproducible code will aid with one of the documents objectives: **ensure ethical coding.**
+Our department have published their three year plan, Caring For Our Data, 2022 - 2025 (download link below), which includes a section on Data Science. It is an encouraging document that promotes a bright vision for the Trust - you should read it. Unfortunately, reproducible working is not explicitly mentioned, so a revision would include greater emphasis on its necessity. However, there are certainly good examples of how working reproducibly will aid with some of the plans objectives: 
 
+<br>
+**Working ethically**
 
+*"...A key consideration within AI is ethics. Any Healthcare AI practice should put all patients and people first. This means that it is our responsibility to, for example, minimise representation bias within any of our algorithms."* - Page 15.
 
+- There are high-profile examples of published research that has been retracted due to code writing that did not adequately account for representation bias in their sample. Results can easily be misinterpreted when a sample set does not accurately represent your population.
 
-Talk about NHS and novelty of moving toward taking on DS
-Talk about NHS and recent papers on data
-Talk about DAA and its 3 year plan - DS part in particular - say that in order to do this are code needs to be up to scratch
+- Writing code reproducibly allows others to review your work, gives visibility to any assumptions you've made, and keeps you accountable.
 
-Talk about ways we can work in a reproducible way as a team
-Use stuff on my website to help with this
+- Deep dives:
+<br>
+-- [Towards a Code of Ethics for AI] - Paula Boddington, 2017
+
+[Towards a Code of Ethics for AI]: https://download.e-bookshelf.de/download/0010/4648/14/L-G-0010464814-0024159548.pdf
+
+<br>
+**Transparent usage of data**
+
+*"Improving the transparency of how data is (sic) used and shared"* - Page 16
+
+- This dovetails nicely with working ethically. Transparency with our code keeps us accountable, makes code review possible, and therefore makes working unethically less likely to occur.
+
+- Further than this, transparency of code forms the foundation of reproducible work. Full review of the methodology allows constructive critique and ensures appropriate methods and models were used.
+
+- Transparency also fosters learning. Personally, I have primarily learned to code through forums, then reading scripts from others I work with, and more recently using GitHub to pull others repositories and explore their code. Transparent code is simply incredible for self-improvement.
+
+<br>
+**Data Quality**
+
+*"Our people are confident their decisions are being made on robust data"*
+
+- If you've worked with data in the NHS then it shouldn't shock you to hear me say how terrible the quality is: hand-typed fields, columns with different names but the same data, columns with impossible to understand values, impossible tails to distributions.. it goes on. A lot of our time is taken up with getting the data cleaned to an appropriate state for initial exploration.
+
+- With so much pre-processing to do, it's unlikely you'll do a perfect job first time round. The issue then becomes whether you continue through to the "end" of your analysis without including/cleaning/excluding/factoring/etc - your output may well be correct for the data you used, but incorrect because the data you used was not appropriate. Working reproducibly will certainly help with this.
+
+- In order to understand what you've done, writing code in a readable manner becomes a requirement. I'll come on to writing styles later on, but suffice to say that a facet of reproducible work is readable work.
+
+```{r echo = F, warning = F, message = F}
+install.packages("librarian", quiet = T)
+library(librarian, quiet = T)
+lib_startup(librarian, global = T)
+librarian::shelf(downloadthis, quiet = T)
+
+download_link(
+  link = "https://github.com/TL-Ingram/Reproducible_work/tree/master/_main_documents/Caring For Our Data.pdf",
+  button_label = "Caring For Our Data",
+  output_extension = ".pdf",
+  button_type = "info",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+<br>
+
+---
+
+# DAA Data Science team - working reproducibly
+
+#### A checklist:
+
