@@ -101,9 +101,7 @@ Our department have published their three year plan, Caring For Our Data, 2022 -
 
 - Deep dives:
 
-<br>
-
--- [Towards a Code of Ethics for AI] - Paula Boddington, 2017
+  -- [Towards a Code of Ethics for AI] - Paula Boddington, 2017
 
 <br>
 
