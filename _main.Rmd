@@ -1,11 +1,26 @@
 ---
-title: "Producing reproducible code: A DAA DS framework"
-output: html_document
+title: 'Producing reproducible code: A DAA DS framework'
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+<br>
+
+**A note - 29JULY2022**
+
+This document is an attempt at synthesising many disparate sources on doing reproducible data scientific work. Why this has been necessary is covered in the 'Introduction'. To summarise my thoughts on producing reproducible work: shared principles that have been battle-tested by computer science, software engineering, etc, should form the bedrock of reproducible work in Data Science (version control, shared writing styles, reproducible environments) and additional 'standards' from other fields should also be included (package synthesis, assumption listing, minute keeping).
+
+Following the principles of reproducible Data Science, this document is available on [GitHub] for Pull requests; it should be treated as a fluid document that will be updated, altered, and enhanced, as we improve our knowledge and practices as a team.
+
+<br>
+
+---
 
 ## Introduction
 
@@ -23,7 +38,7 @@ But none of these determine whether the work that went into producing the output
 
 This is the crux of the matter: **the "correctness" of the output cannot be objectively assessed without transparency of the code.**
 
-Formal courses on data science touch on reproducibility, however serious highlighting of the importance to practical Data Science appears to have been left to the individual to self-teach, or that they learn on-the-job. Here, we argue for reproducibility and describe a framework toward producing robust, reliable and reproducible work in the DAA Data Science team.
+Formal courses on Data Science touch on reproducibility, however serious highlighting of the importance to practical Data Science appears to have been left to the individual to self-teach, or that they learn on-the-job. Here, I argue for reproducibility and describe a framework toward producing robust, reliable and reproducible work in the DAA Data Science team.
 
 <br>
 
@@ -52,10 +67,6 @@ The definitions I will be using are taken from the [Turing Way]:
 
 </center>
 
-
-[Hans Plesser (2018)]: https://www.frontiersin.org/articles/10.3389/fninf.2017.00076/full
-[Turing Way]: https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html
-
 <br>
 
 ---
@@ -70,9 +81,6 @@ The UK government has recently published NHS-centred documents that emphasise th
 
 - [Data saves lives: reshaping health and social care with data - GOV.UK, June 2022]
 
-[Better, broader, safer: using health data for research and analysis - GOV.UK, April 2022]: https://www.gov.uk/government/publications/better-broader-safer-using-health-data-for-research-and-analysis/better-broader-safer-using-health-data-for-research-and-analysis
-[Data saves lives: reshaping health and social care with data - GOV.UK, June 2022]: https://www.gov.uk/government/publications/data-saves-lives-reshaping-health-and-social-care-with-data/data-saves-lives-reshaping-health-and-social-care-with-data#how-you-can-get-involve
-
 <br>
 
 ---
@@ -82,6 +90,7 @@ The UK government has recently published NHS-centred documents that emphasise th
 Our department have published their three year plan, Caring For Our Data, 2022 - 2025 (download link below), which includes a section on Data Science. It is an encouraging document that promotes a bright vision for the Trust - you should read it. Unfortunately, reproducible working is not explicitly mentioned, so a revision would include greater emphasis on its necessity. However, there are certainly good examples of how working reproducibly will aid with some of the plans objectives: 
 
 <br>
+
 **Working ethically**
 
 *"...A key consideration within AI is ethics. Any Healthcare AI practice should put all patients and people first. This means that it is our responsibility to, for example, minimise representation bias within any of our algorithms."* - Page 15.
@@ -91,12 +100,13 @@ Our department have published their three year plan, Caring For Our Data, 2022 -
 - Writing code reproducibly allows others to review your work, gives visibility to any assumptions you've made, and keeps you accountable.
 
 - Deep dives:
+
 <br>
+
 -- [Towards a Code of Ethics for AI] - Paula Boddington, 2017
 
-[Towards a Code of Ethics for AI]: https://download.e-bookshelf.de/download/0010/4648/14/L-G-0010464814-0024159548.pdf
-
 <br>
+
 **Transparent usage of data**
 
 *"Improving the transparency of how data is (sic) used and shared"* - Page 16
@@ -108,9 +118,10 @@ Our department have published their three year plan, Caring For Our Data, 2022 -
 - Transparency also fosters learning. Personally, I have primarily learned to code through forums, then reading scripts from others I work with, and more recently using GitHub to pull others repositories and explore their code. Transparent code is simply incredible for self-improvement.
 
 <br>
+
 **Data Quality**
 
-*"Our people are confident their decisions are being made on robust data"*
+*"Our people are confident their decisions are being made on robust data"* - Page 11
 
 - If you've worked with data in the NHS then it shouldn't shock you to hear me say how terrible the quality is: hand-typed fields, columns with different names but the same data, columns with impossible to understand values, impossible tails to distributions.. it goes on. A lot of our time is taken up with getting the data cleaned to an appropriate state for initial exploration.
 
@@ -139,7 +150,46 @@ download_link(
 
 ---
 
-# DAA Data Science team - working reproducibly
+# DAA Data Science team: working reproducibly
 
-#### A checklist:
+Upholding the highest standards of data scientific work is what we will produce. In order to do that, we need to be aligned in the methods we will use daily to ensure reproducibility.
 
+I'm now going to modify the Turing Way definition of 'Reproducible' to make it practically useful for our team's daily work:
+
+**Reproducible work necessitates ensuring that all code and all supporting information that went into producing an output is available, transparent, and readable.**
+
+And for a more wordy definition I would add: 
+
+**All code iterations should be included and traceable using version control, which should be saved using appropriate project repositories that are available to the appropriate individuals. Additionally, all supporting information should similarly be saved in the project repository.**
+
+Supporting information includes:
+
+- Assumptions made during the analysis
+- All meeting minutes with stakeholders, project managers, sponsors, etc
+- Any additional non-code information or data that was relevant to the output
+
+### A checklist:
+
+To make it as plain as possible, I'm going to start with a checklist of what I see as the major factors in ensuring reproducible work, before going into each in more detail.
+
+- Writing down your assumptions
+- Writing down meeting minutes
+- Writing style
+- Source/version control
+- Environment
+- Outputting work reproducibly
+- Team package synthesis
+
+Not necessarily reproducible but good practice
+- Code review
+
+<br>
+
+---
+
+[Hans Plesser (2018)]: https://www.frontiersin.org/articles/10.3389/fninf.2017.00076/full
+[Turing Way]: https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html
+[Better, broader, safer: using health data for research and analysis - GOV.UK, April 2022]: https://www.gov.uk/government/publications/better-broader-safer-using-health-data-for-research-and-analysis/better-broader-safer-using-health-data-for-research-and-analysis
+[Data saves lives: reshaping health and social care with data - GOV.UK, June 2022]: https://www.gov.uk/government/publications/data-saves-lives-reshaping-health-and-social-care-with-data/data-saves-lives-reshaping-health-and-social-care-with-data#how-you-can-get-involve
+[Towards a Code of Ethics for AI]: https://download.e-bookshelf.de/download/0010/4648/14/L-G-0010464814-0024159548.pdf
+[GitHub]:https://github.com/TL-Ingram/Reproducible_work
