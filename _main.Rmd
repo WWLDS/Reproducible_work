@@ -127,7 +127,7 @@ Our department have published their three year plan, Caring For Our Data, 2022 -
 
 - In order to understand what you've done, writing code in a readable manner becomes a requirement. I'll come on to writing styles later on, but suffice to say that a facet of reproducible work is readable work.
 
-```{r echo = F, warning = F, message = F}
+``` {r echo = F, warning = F, message = F}
 install.packages("librarian", quiet = T)
 library(librarian, quiet = T)
 lib_startup(librarian, global = T)
@@ -174,14 +174,14 @@ Supporting information includes:
 
 To make it as plain as possible, I'm going to start with a checklist of what I see are the major factors in ensuring reproducible work, before going into each in more detail.
 
-- Write down meeting minutes
-- Environment
-- Write down assumptions
-- Writing style
-- Source/version control
-- Outputting work reproducibly
-- Code testing
-- Code review
+- *Write down meeting minutes*
+- *Environment*
+- *Write down assumptions*
+- *Writing style*
+- *Source/version control*
+- *Outputting work reproducibly*
+- *Code testing*
+- *Code review*
 
 <br>
 
@@ -189,17 +189,53 @@ To make it as plain as possible, I'm going to start with a checklist of what I s
   
   I think this is often overlooked, but the number of assumptions you'll make while working with a dataset are often large, and they may be more logical reasons, however someone else coming in to look at the data may not be able to decipher what you did without also understanding your assumptions.
   
-As an example, let's suppose we have a dataframe that contains thousands of rows and hundreds of columns (this is common in the work we're doing!). You take a look at some of the columns and notice that two columns have different headers but seem to contain the same values. You write a bit of code to test this and it turns out it's true, all of them are the same! Although this may not seem like a classical example of an assumption, it's still something that you assume to hold true in the future, so you would note this down as an assumption. In this case you would do two things:
+As an example, let's suppose we have a dataframe taken from a theatre admissions dataset that contains thousands of rows and hundreds of columns (this is common in the work we're doing!). While cleaning it up, you notice that two of the columns, *closure* and *operation_end_time* have different headers but seem to contain the same values. 
 
-1) Create a notepad file in your project folder titled "assumptions.txt", note this assumption. Describe the assumption and the actions taken (in this case: removed column "x", kept column "y")
+<br>
 
-2) Comment out the test but do not delete (see Fig. 1).
+``` {r echo = F, warning = F, message = F}
+shelf(tidyverse)
+figure_one <- 
+  read_rds("figure_one.rds") %>%
+  as_tibble(.) %>%
+  select(., 1,6,7,8,9)
+figure_one
+```
 
-3) Add a comment to this test line to explain the assumption in plain English.
+<br>
 
-To list a few other examples of assumptions: assuming the meaning of a column, assuming that two columns are collinear, assuming that if column_one == x, then column_two == y.
+You write a bit of code to test this and it turns out it's true, all of them are the same! 
 
+<br>
 
+``` {r echo = T}
+col_homogeneity_check <- figure_one %>%
+  mutate(., check = if_else(closure == operation_end_time, TRUE, FALSE)) %>%
+  group_by(., check, .drop = F) %>%
+  summarise(., n = n()) %>%
+  mutate(., freq = n/sum(n)) %>%
+  print(.) # cols "closure" & "operation_end_time" are identical
+```
+
+<br>
+
+Although this may not seem like a classical example of an assumption, it's still something that you assume to hold true in the future, so you would note this down as an assumption. 
+
+To make this reproducible, you would do the following:
+
+1) Create a notepad file in your project folder titled "assumptions.txt", and note this assumption. Describe the assumption, the test and result, and the actions taken. In this example: *assume closure == operation_end_time; test showed 100% identical; removed column "closure", kept column "operation_end_time"*)
+
+2) Comment out the test but do not delete.
+
+3) Add a comment to the end of test to explain the test result in plain English.
+
+<br>
+
+A few other examples of assumptions: 
+
+- *assuming the meaning of a column*
+- *assuming that two columns are collinear*
+- *assuming that if column_one == x, then column_two == y*
 
 ---
 
