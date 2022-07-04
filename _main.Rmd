@@ -174,7 +174,7 @@ Supporting information includes:
 
 To make it as plain as possible, I'm going to start with a checklist of what I see are the major factors in ensuring reproducible work, before going into each in more detail.
 
-- *Write down meeting minutes*
+- *Keep meeting minutes*
 - *Environment*
 - *Write down assumptions*
 - *Writing style*
@@ -185,7 +185,21 @@ To make it as plain as possible, I'm going to start with a checklist of what I s
 
 <br>
 
-**Write down assumptions**
+### Keep meeting minutes
+
+- Useful to describe the context. Ideally at the time as memory bad (eg how memory is bad? Papers on its unreliabilty?)
+
+- Template document in Teams
+
+- Create meeting minutes folder in each project. Save here. Save in format of "x.doc"
+
+<br>
+
+### Environment
+
+<br>
+
+### Write down assumptions
   
   I think this is often overlooked, but the number of assumptions you'll make while working with a dataset are often large, and they may be more logical reasons, however someone else coming in to look at the data may not be able to decipher what you did without also understanding your assumptions.
   
@@ -228,8 +242,6 @@ To make this reproducible, you would do the following:
 2) Comment out the test but do not delete.
 
 3) Add a comment to the end of test to explain the test result in plain English.
-
-<br>
 
 A few other examples of assumptions: 
 
