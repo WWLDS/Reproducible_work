@@ -1,9 +1,9 @@
 ---
 title: 'Producing reproducible code: A DAA DS framework'
 output:
+  pdf_document: default
   html_document: default
   word_document: default
-  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -12,11 +12,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-**A note - 29JULY2022**
+**A note - 04JULY2022**
 
-This document is an attempt at synthesising many disparate sources on doing reproducible data scientific work. Why this has been necessary is covered in the 'Introduction'. To summarise my thoughts on producing reproducible work: shared principles that have been battle-tested by computer science, software engineering, etc, should form the bedrock of reproducible work in Data Science (version control, shared writing styles, reproducible environments) and additional 'standards' from other fields should also be included (package synthesis, assumption listing, minute keeping).
+This document is a shortened version of an attempt toward synthesising many disparate sources on doing reproducible data scientific work. Why this has been necessary is covered in the ‘Introduction’. To summarise my thoughts on producing reproducible work: shared principles that have been battle-tested by computer science, software engineering, etc, should form the bedrock of reproducible work in Data Science (version control, shared writing styles, reproducible environments) and additional ‘standards’ from other fields should also be included (package synthesis, assumption listing, minute keeping).
 
-Following the principles of reproducible Data Science, this document is available on [GitHub] for Pull requests; it should be treated as a fluid document that will be updated, altered, and enhanced, as we improve our knowledge and practices as a team.
+This document contains the background for the main thrust of the work, producing a framework and procedure for doing reproducible work in the WWL Data Science team. The full document, including the framework, is located in: Data Science -> Projects -> Current -> Reproducible -> Test_files_Scripts -> Github_collection. 
+
 
 <br>
 
@@ -87,7 +88,7 @@ The UK government has recently published NHS-centred documents that emphasise th
 
 # The DAA
 
-Our department have published their three year plan, Caring For Our Data, 2022 - 2025 (download link below), which includes a section on Data Science. It is an encouraging document that promotes a bright vision for the Trust - you should read it. Unfortunately, reproducible working is not explicitly mentioned, so a revision would include greater emphasis on its necessity. However, there are certainly good examples of how working reproducibly will aid with some of the plans objectives: 
+Our department have published their three year plan, Caring For Our Data, 2022 - 2025, which includes a section on Data Science. It is an encouraging document that promotes a bright vision for the Trust - you should read it. Unfortunately, reproducible working is not explicitly mentioned, so a revision would include greater emphasis on its necessity. However, there are certainly good examples of how working reproducibly will aid with some of the plans objectives: 
 
 <br>
 
@@ -127,127 +128,7 @@ Our department have published their three year plan, Caring For Our Data, 2022 -
 
 - In order to understand what you've done, writing code in a readable manner becomes a requirement. I'll come on to writing styles later on, but suffice to say that a facet of reproducible work is readable work.
 
-``` {r echo = F, warning = F, message = F}
-install.packages("librarian", quiet = T)
-library(librarian, quiet = T)
-lib_startup(librarian, global = T)
-librarian::shelf(downloadthis, quiet = T)
-
-download_link(
-  link = "https://github.com/TL-Ingram/Reproducible_work/tree/master/_main_documents/Caring For Our Data.pdf",
-  button_label = "Caring For Our Data",
-  output_extension = ".pdf",
-  button_type = "info",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-
 <br>
-
----
-
-# DAA Data Science team: working reproducibly
-
-Upholding the highest standards of data scientific work is what we will produce. In order to do that, we need to be aligned in the methods we will use daily to ensure reproducibility.
-
-I'm now going to modify the Turing Way definition of 'Reproducible' to make it practically useful for our team's daily work:
-
-**Reproducible work necessitates ensuring that all code and all supporting information that went into producing an output is available, transparent, and readable.**
-
-And for a more wordy definition I would add: 
-
-**All code iterations should be included and traceable using version control, which should be saved using appropriate project repositories that are available to the appropriate individuals. Additionally, all supporting information should similarly be saved in the project repository.**
-
-Supporting information includes:
-
-- Assumptions made during the analysis
-- All meeting minutes with stakeholders, project managers, sponsors, etc
-- Any additional non-code information or data that was relevant to the output
-
-<br>
-
----
-
-# Reproducibility checklist:
-
-To make it as plain as possible, I'm going to start with a checklist of what I see are the major factors in ensuring reproducible work, before going into each in more detail.
-
-- *Keep meeting minutes*
-- *Environment*
-- *Write down assumptions*
-- *Writing style*
-- *Source/version control*
-- *Outputting work reproducibly*
-- *Code testing*
-- *Code review*
-
-<br>
-
-### Keep meeting minutes
-
-- Useful to describe the context. Ideally at the time as memory bad (eg how memory is bad? Papers on its unreliabilty?)
-
-- Template document in Teams
-
-- Create meeting minutes folder in each project. Save here. Save in format of "x.doc"
-
-<br>
-
-### Environment
-
-<br>
-
-### Write down assumptions
-  
-  I think this is often overlooked, but the number of assumptions you'll make while working with a dataset are often large, and they may be more logical reasons, however someone else coming in to look at the data may not be able to decipher what you did without also understanding your assumptions.
-  
-As an example, let's suppose we have a dataframe taken from a theatre admissions dataset that contains thousands of rows and hundreds of columns (this is common in the work we're doing!). While cleaning it up, you notice that two of the columns, *closure* and *operation_end_time* have different headers but seem to contain the same values. 
-
-<br>
-
-``` {r echo = F, warning = F, message = F}
-shelf(tidyverse)
-figure_one <- 
-  read_rds("figure_one.rds") %>%
-  as_tibble(.) %>%
-  select(., 1,6,7,8,9)
-figure_one
-```
-
-<br>
-
-You write a bit of code to test this and it turns out it's true, all of them are the same! 
-
-<br>
-
-``` {r echo = T}
-col_homogeneity_check <- figure_one %>%
-  mutate(., check = if_else(closure == operation_end_time, TRUE, FALSE)) %>%
-  group_by(., check, .drop = F) %>%
-  summarise(., n = n()) %>%
-  mutate(., freq = n/sum(n)) %>%
-  print(.) # cols "closure" & "operation_end_time" are identical
-```
-
-<br>
-
-Although this may not seem like a classical example of an assumption, it's still something that you assume to hold true in the future, so you would note this down as an assumption. 
-
-To make this reproducible, you would do the following:
-
-1) Create a notepad file in your project folder titled "assumptions.txt", and note this assumption. Describe the assumption, the test and result, and the actions taken. In this example: *assume closure == operation_end_time; test showed 100% identical; removed column "closure", kept column "operation_end_time"*)
-
-2) Comment out the test but do not delete.
-
-3) Add a comment to the end of test to explain the test result in plain English.
-
-A few other examples of assumptions: 
-
-- *assuming the meaning of a column*
-- *assuming that two columns are collinear*
-- *assuming that if column_one == x, then column_two == y*
 
 ---
 
