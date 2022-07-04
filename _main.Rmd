@@ -166,22 +166,40 @@ Supporting information includes:
 - All meeting minutes with stakeholders, project managers, sponsors, etc
 - Any additional non-code information or data that was relevant to the output
 
-### A checklist:
+<br>
 
-To make it as plain as possible, I'm going to start with a checklist of what I see as the major factors in ensuring reproducible work, before going into each in more detail.
+---
 
-- Writing down your assumptions
-- Writing down meeting minutes
+# Reproducibility checklist:
+
+To make it as plain as possible, I'm going to start with a checklist of what I see are the major factors in ensuring reproducible work, before going into each in more detail.
+
+- Write down meeting minutes
+- Environment
+- Write down assumptions
 - Writing style
 - Source/version control
-- Environment
 - Outputting work reproducibly
-- Team package synthesis
-
-Not necessarily reproducible but good practice
+- Code testing
 - Code review
 
 <br>
+
+**Write down assumptions**
+  
+  I think this is often overlooked, but the number of assumptions you'll make while working with a dataset are often large, and they may be more logical reasons, however someone else coming in to look at the data may not be able to decipher what you did without also understanding your assumptions.
+  
+As an example, let's suppose we have a dataframe that contains thousands of rows and hundreds of columns (this is common in the work we're doing!). You take a look at some of the columns and notice that two columns have different headers but seem to contain the same values. You write a bit of code to test this and it turns out it's true, all of them are the same! Although this may not seem like a classical example of an assumption, it's still something that you assume to hold true in the future, so you would note this down as an assumption. In this case you would do two things:
+
+1) Create a notepad file in your project folder titled "assumptions.txt", note this assumption. Describe the assumption and the actions taken (in this case: removed column "x", kept column "y")
+
+2) Comment out the test but do not delete (see Fig. 1).
+
+3) Add a comment to this test line to explain the assumption in plain English.
+
+To list a few other examples of assumptions: assuming the meaning of a column, assuming that two columns are collinear, assuming that if column_one == x, then column_two == y.
+
+
 
 ---
 

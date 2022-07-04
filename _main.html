@@ -599,24 +599,53 @@ etc</li>
 <li>Any additional non-code information or data that was relevant to the
 output</li>
 </ul>
-<div id="a-checklist" class="section level3">
-<h3>A checklist:</h3>
-<p>To make it as plain as possible, I’m going to start with a checklist
-of what I see as the major factors in ensuring reproducible work, before
-going into each in more detail.</p>
-<ul>
-<li>Writing down your assumptions</li>
-<li>Writing down meeting minutes</li>
-<li>Writing style</li>
-<li>Source/version control</li>
-<li>Environment</li>
-<li>Outputting work reproducibly</li>
-<li>Team package synthesis</li>
-</ul>
-<p>Not necessarily reproducible but good practice - Code review</p>
 <p><br></p>
 <hr />
 </div>
+<div id="reproducibility-checklist" class="section level1">
+<h1>Reproducibility checklist:</h1>
+<p>To make it as plain as possible, I’m going to start with a checklist
+of what I see are the major factors in ensuring reproducible work,
+before going into each in more detail.</p>
+<ul>
+<li>Write down meeting minutes</li>
+<li>Environment</li>
+<li>Write down assumptions</li>
+<li>Writing style</li>
+<li>Source/version control</li>
+<li>Outputting work reproducibly</li>
+<li>Code testing</li>
+<li>Code review</li>
+</ul>
+<p><br></p>
+<p><strong>Write down assumptions</strong></p>
+<p>I think this is often overlooked, but the number of assumptions
+you’ll make while working with a dataset are often large, and they may
+be more logical reasons, however someone else coming in to look at the
+data may not be able to decipher what you did without also understanding
+your assumptions.</p>
+<p>As an example, let’s suppose we have a dataframe that contains
+thousands of rows and hundreds of columns (this is common in the work
+we’re doing!). You take a look at some of the columns and notice that
+two columns have different headers but seem to contain the same values.
+You write a bit of code to test this and it turns out it’s true, all of
+them are the same! Although this may not seem like a classical example
+of an assumption, it’s still something that you assume to hold true in
+the future, so you would note this down as an assumption. In this case
+you would do two things:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create a notepad file in your project folder titled
+“assumptions.txt”, note this assumption. Describe the assumption and the
+actions taken (in this case: removed column “x”, kept column
+“y”)</p></li>
+<li><p>Comment out the test but do not delete (see Fig. 1).</p></li>
+<li><p>Add a comment to this test line to explain the assumption in
+plain English.</p></li>
+</ol>
+<p>To list a few other examples of assumptions: assuming the meaning of
+a column, assuming that two columns are collinear, assuming that if
+column_one == x, then column_two == y.</p>
+<hr />
 </div>
 
 
