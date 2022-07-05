@@ -182,10 +182,44 @@ To make it as plain as possible, I'm going to start with a checklist of what I s
 - *Outputting work reproducibly*
 - *Code testing*
 - *Code review*
+- *To_do list*
 
 <br>
 
 ### Keep meeting minutes
+
+Domain knowledge is vital. In our roles, we will usually be coming into a piece of work near the end of a process we may not have been involved in, in a mature workflow that has existed for years, or analysis of novel datasets for the sake of exploration. Unlike academia, where you may be involved in the development of the original hypothesis generation, data collection and onward analysis, here we will regularly take on the humbling role of a highly trained ignoramous! A separate topic is the Data Scientist attitude, but I'll leave that for another time.
+
+**Domain knowledge**
+
+- Gaining domain knowledge is the priority for any new Data Science project. 
+- To begin, an initial meeting with key stakeholders, those working most intimately within the domain, should be prioritised. In our Trust, there are >150 databases in our SQL server.. just knowing which are relevant is tough without the stakeholders input. 
+- Further meetings at regular intervals should be put into the diary for follow-up questions. 
+- Push for shadowing or tours - first hand experience is of tremendous value.
+
+**Meeting minutes**
+
+- For your benefit:
+-- Taking meeting minutes (shadow/tour minutes) should be ideally carried out during the experience or directly following it.
+-- Evidence suggests we are poor at recall and are able to convince ourselves of falsities with total sincerity. Indeed, our working memory has only a limited capacity. Write things down ASAP.
+-- Coming back to your minutes will have untold benefits to your project at all stages.
+
+- For others benefit:
+-- Without minutes, key domain knowledge will not be imparted to others trying to pick up your project, or understand the work. Nothing is as useful as the experiences themselves, but minutes are the minimum required for ensuring reproducibility between Data Scientists'.
+
+**What should minutes include**
+
+- Everything! They should be detailed enough to ensure your memory is refreshed by reading it a week after the meeting.
+- Each meeting is different; it's likely the initial stakeholder meeting will be more detailed than recurrent meetings.
+
+**Practical purposes**
+
+- **There is a meeting minutes template document in Teams.** This should be used to ensure standardisation across each of us and our projects.
+- The template is located in: Teams -> Team - Data Science -> Projects -> Current -> Template_documents
+- Each meeting minute document should be saved as "DDMONYYYY". For example, 01JUL2022.
+- The document should be saved within a "Meeting_minutes" folder within the appropriate project folder.
+
+
 
 - Useful to describe the context. Ideally at the time as memory bad (eg how memory is bad? Papers on its unreliabilty?)
 
